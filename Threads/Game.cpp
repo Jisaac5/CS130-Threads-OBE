@@ -1,6 +1,8 @@
 #include <iostream>
 #include <thread>
 #include "Header.h"
+#include <conio.h>
+#include <windows.h>
 
 using namespace std;
 
@@ -16,32 +18,34 @@ int main()
     cout << "1) Tapsilog (Cost: 5)\n2) Bacsilog (Cost: 3)\n3) Hakdog (Cost: 2)\n4) Exit" << endl;
     cout << "========================================================" << endl;
 
+    char choice;
+
     while (true)
     {
         
 
-        int choice;
-        cin >> choice;
-
-        if (choice == 4 || cookingGame::checkGameEnd())
+        choice = _getch();
+        if (choice == '4' || cookingGame::checkGameEnd())
         {
-            break;
+            Sleep(2000);
+            return(0);
         }
 
         try
         {
-            switch (choice)
-            {
-            case 1:
+            if (choice == '1') {
+                cout << "Tapsilog order received..." << endl;
                 cookingGame::addTask("Tapsilog", 10, 5);
-                break;
-            case 2:
+            }
+            else if (choice == '2') {
+                cout << "Bacsilog order received..." << endl;
                 cookingGame::addTask("Bacsilog", 7, 3);
-                break;
-            case 3:
+            }
+            else if (choice == '3') {
+                cout << "Hakdog order received..." << endl;
                 cookingGame::addTask("Hakdog", 3, 2);
-                break;
-            default:
+            }
+            else {
                 cout << "Invalid choice!" << endl;
             }
             cout << endl; // Add a blank line after the user makes a choice
