@@ -1,50 +1,56 @@
 #include <iostream>
 #include <thread>
-#include <windows.h>
 #include "Header.h"
 
 using namespace std;
 
 int main()
 {
-	while (true)
-	{
-		cout << "Select your order" << endl;
-		cout << "1) Tapsilog\n2) Bacsilog\n3) Hakdog\n4) Exit" << endl;
+    cookingGame::startThreadPool(3); // Start a thread pool with 3 threads
 
-		int choice;
-		cin >> choice;
+    thread gameTimer(cookingGame::startGameTimer, 180); // Start game timer (3 minutes)
+    thread rentThread(cookingGame::deductRent); // Start rent deduction
 
-		if (choice == 4)
-		{
-			break;
-		}
+    while (true)
+    {
+        cout << "Select your order" << endl;
+        cout << "1) Tapsilog (Cost: 5)\n2) Bacsilog (Cost: 3)\n3) Hakdog (Cost: 2)\n4) Exit" << endl;
 
-		switch (choice)
-		{
-			case 1:
-			{
-				thread t1(&cookingGame::cookFood, "Tapsilog", 10);
-				t1.detach();
-				break;
-			}
+        int choice;
+        cin >> choice;
 
-			case 2:
-			{
-				thread t2(&cookingGame::cookFood, "Bacsilog", 7);
-				t2.detach();
-				break;
-			}
+        if (choice == 4 || cookingGame::checkGameEnd())
+        {
+            break;
+        }
 
-			case 3:
-			{
-				thread t3(&cookingGame::cookFood, "Hakdog", 3);
-				t3.detach();
-				break;
-			}
+        try
+        {
+            switch (choice)
+            {
+            case 1:
+                cookingGame::addTask("Tapsilog", 10, 5);
+                break;
+            case 2:
+                cookingGame::addTask("Bacsilog", 7, 3);
+                break;
+            case 3:
+                cookingGame::addTask("Hakdog", 3, 2);
+                break;
+            default:
+                cout << "Invalid choice!" << endl;
+            }
+            cout << endl; // Add a blank line after the user makes a choice
+        }
+        catch (const exception& e)
+        {
+            cerr << "Error: " << e.what() << endl;
+        }
+    }
 
-		default:
-			cout << "Invalid choice!" << endl;
-		}
-	}
+    gameTimer.join();
+    rentThread.join();
+
+    cookingGame::stopThreadPool(); // Stop the thread pool
+    return 0;
 }
