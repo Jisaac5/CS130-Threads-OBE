@@ -27,8 +27,7 @@ namespace cookingGame
     {
         cout << "Cooking " << foodName << " for " << cookTime << " seconds" << endl;
         Sleep(1000 * cookTime);
-        cout << foodName << " is ready!" << endl;
-        cout << "Selling " << foodName << " for " << cookTime * 2 << " units" << endl;
+        cout << "$$$$$$$$ " << foodName << " is ready! Selling for " << cookTime * 2 << " units $$$$$$$$" << endl;
         updateBalance(cookTime * 2); // Earn double the cook time as earnings
         cout << endl; // Add a blank line after the cooking message
     }

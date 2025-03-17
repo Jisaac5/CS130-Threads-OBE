@@ -11,10 +11,14 @@ int main()
     thread gameTimer(cookingGame::startGameTimer, 180); // Start game timer (3 minutes)
     thread rentThread(cookingGame::deductRent); // Start rent deduction
 
+    cout << "[RENT GOAL: 200 (Get your balance above 200 and maintain it!)]" << endl;
+    cout << "Select your order" << endl;
+    cout << "1) Tapsilog (Cost: 5)\n2) Bacsilog (Cost: 3)\n3) Hakdog (Cost: 2)\n4) Exit" << endl;
+    cout << "========================================================" << endl;
+
     while (true)
     {
-        cout << "Select your order" << endl;
-        cout << "1) Tapsilog (Cost: 5)\n2) Bacsilog (Cost: 3)\n3) Hakdog (Cost: 2)\n4) Exit" << endl;
+        
 
         int choice;
         cin >> choice;
