@@ -7,7 +7,7 @@
 namespace cookingGame
 {
     void cookFood(std::string foodName, int cookTime);
-    void addTask(const std::string& foodName, int cookTime, int foodCost);
+    void addTask(const std::string& foodName, int cookTime, int foodCost, int userChoice);
     void workerThread();
     void startThreadPool(int numThreads);
     void stopThreadPool();

@@ -35,15 +35,15 @@ int main()
         {
             if (choice == '1') {
                 cout << "Tapsilog order received..." << endl;
-                cookingGame::addTask("Tapsilog", 10, 5);
+                cookingGame::addTask("Tapsilog", 10, 5, 1);
             }
             else if (choice == '2') {
                 cout << "Bacsilog order received..." << endl;
-                cookingGame::addTask("Bacsilog", 7, 3);
+                cookingGame::addTask("Bacsilog", 7, 3, 2);
             }
             else if (choice == '3') {
                 cout << "Hakdog order received..." << endl;
-                cookingGame::addTask("Hakdog", 3, 2);
+                cookingGame::addTask("Hakdog", 3, 2, 3);
             }
             else {
                 cout << "Invalid choice!" << endl;
