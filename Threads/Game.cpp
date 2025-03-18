@@ -27,8 +27,7 @@ int main()
         choice = _getch();
         if (choice == '4' || cookingGame::checkGameEnd())
         {
-            Sleep(2000);
-            return(0);
+            return 0;
         }
 
         try
